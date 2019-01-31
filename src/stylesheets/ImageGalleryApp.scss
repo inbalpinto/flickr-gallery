@@ -1,0 +1,241 @@
+@import "base/all";
+
+.imageGalleryApp {
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+
+.galleryHeader {
+    border-bottom: 1px solid #aaa;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 0.8vmin);
+    color: white;
+    .appLogo {
+        margin: 8px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        .vennLogo {
+            -webkit-filter: grayscale(100%); // Safari 6.0 - 9.0
+            filter: grayscale(100%);
+            height: 20px;
+        }
+        .appTitle {
+            font-size: 14px;
+            display: inline-block;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #f2f2f2;
+            margin-inline-start: 1px;
+            margin-block-start: 1px;
+            letter-spacing: 0.5px;
+        }
+    } 
+}
+
+$barHeight: 44px;
+$searchHeight: 40px;
+$barWidth: 460px;
+$btnWidth: 75px;
+
+$btnColorActive: #00bcd4;
+
+.searchBar {
+    height: $barHeight;
+    width: $barWidth;
+    border-radius: $searchHeight;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 $searchHeight/2;
+    background: #f2f2f2;
+    .searchInput {
+        border: none;
+        height: 100%;
+        width: calc(100% - #{$btnWidth});
+        color: #444;
+        outline: none;
+        background-color: transparent; 
+        font-family: 'Raleway', sans-serif;
+        caret-color: #444;
+        font-weight: 300;
+        font-size: 20px;
+    }
+    .label {
+        color: rgb(206, 206, 206);
+        position: absolute;
+        top: 13px;
+        left: $searchHeight/2;
+        pointer-events: none;
+        @include transition(all 0.5s ease);
+    }
+    .searchInput:focus+.label {
+        font-size: 9px;
+        top: 3px;
+        @include transition(all 0.5s ease);
+    }
+    .searchInput:not(:placeholder-shown)+.label {
+        font-size: 9px;
+        top: 3px;
+        color: $btnColorActive;
+    }
+    .underline {
+        width: 0px;
+        height: 1px;
+        background-color: rgb(221, 221, 221);
+        position: absolute;
+        bottom: 8px;
+        @include transition(all 0.5s ease);
+    }
+    .searchInput:focus~.underline, .searchBtn.notEmpty:focus+.underline {
+        width: 3*$barWidth/5;
+    }
+
+    .searchBtn {
+        border-radius: 4px $searchHeight/2 $searchHeight/2 4px;
+        height: $searchHeight;
+        width: $btnWidth;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        right: 2px;
+        position: absolute;
+        border: none;
+        @include transition(background-color 0.2s ease);
+
+        &:focus {
+            outline:0;
+        }
+        &:hover {
+            .searchIcon {
+                @include transform(rotate(90deg)); 
+            }
+        }
+        &:active.notEmpty {
+            background-color: rgb(206, 206, 206);
+            background-color: $btnColorActive;
+        }
+        .searchIcon {
+            display: inline-flex;
+            width: 18px;
+            height: auto;
+            @include transition(all 0.6s ease);
+
+        }
+    }
+    
+}
+
+.galleryContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 10px;
+    margin: 30px;
+    .imageWrapper {
+        width: 100%;
+        padding-top: 100%;
+        .image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .galleryContainer {
+        grid-template-columns: repeat(4, 1fr);
+        margin: 20px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .galleryContainer {
+        grid-template-columns: repeat(3, 1fr);
+        margin: 10px;
+    }
+    .galleryHeader .appLogo {
+        .vennLogo {
+          height: 18px;
+        }
+    }
+    $barWidthMedia800: 75%;
+    .searchBar {
+        width: $barWidthMedia800;
+        .searchInput:focus~.underline, .searchBtn.notEmpty:focus+.underline {
+            width: calc(4 * #{$barWidthMedia800} / 5);
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .galleryContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    $barWidthMedia480: 85%;
+    .searchBar {
+        width: $barWidthMedia480;
+        .searchInput {
+            width: calc(100% - #{$searchHeight});
+        }
+        .searchBtn {
+            width: $searchHeight;
+            border-radius: $searchHeight/2;
+        }
+        .searchInput:focus~.underline, .searchBtn.notEmpty:focus+.underline {
+            width: calc(4 * #{$barWidthMedia480} / 5);
+        }
+    }
+    .galleryHeader .appLogo {
+      .vennLogo {
+        height: 14px;
+      }
+      .appTitle {
+          font-size: 11px;
+      }
+    }
+    
+}
+
+@media only screen and (max-width: 300px) {
+    .galleryContainer {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .searchBar {
+        height: 34px;
+        margin-block-start: 12px;
+        padding-left: 16px;
+        .label {
+            top: 10px;
+            left: 16px;
+        }
+        .searchInput {
+            font-size: 15px;
+        }
+        .searchInput:focus+.label {
+            font-size: 6px;
+        }
+        .searchBtn { 
+            height: 32px;
+            width: 32px;
+            right: 0;
+            .searchIcon {
+                width: 12px;
+            }
+        }
+    }
+    .galleryHeader {
+        height: 95px;
+    }
+}
