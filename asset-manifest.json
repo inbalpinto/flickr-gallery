@@ -1,0 +1,14 @@
+{
+  "main.css": "/flickr-gallery/static/css/main.9ed9c583.chunk.css",
+  "main.js": "/flickr-gallery/static/js/main.ad122802.chunk.js",
+  "main.js.map": "/flickr-gallery/static/js/main.ad122802.chunk.js.map",
+  "static/js/1.fa92c112.chunk.js": "/flickr-gallery/static/js/1.fa92c112.chunk.js",
+  "static/js/1.fa92c112.chunk.js.map": "/flickr-gallery/static/js/1.fa92c112.chunk.js.map",
+  "runtime~main.js": "/flickr-gallery/static/js/runtime~main.f93d0c18.js",
+  "runtime~main.js.map": "/flickr-gallery/static/js/runtime~main.f93d0c18.js.map",
+  "static/media/magnifying-glass.svg": "/flickr-gallery/static/media/magnifying-glass.876cc104.svg",
+  "static/css/main.9ed9c583.chunk.css.map": "/flickr-gallery/static/css/main.9ed9c583.chunk.css.map",
+  "index.html": "/flickr-gallery/index.html",
+  "precache-manifest.ffc059182602fd5b22b74e9ffef7362a.js": "/flickr-gallery/precache-manifest.ffc059182602fd5b22b74e9ffef7362a.js",
+  "service-worker.js": "/flickr-gallery/service-worker.js"
+}
